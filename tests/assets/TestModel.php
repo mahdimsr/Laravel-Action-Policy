@@ -10,4 +10,9 @@ class TestModel extends Model
     {
         return $name;
     }
+
+    public function makeFriends(string $friendOne, string $friendTwo): string
+    {
+        return "$friendOne $friendTwo";
+    }
 }

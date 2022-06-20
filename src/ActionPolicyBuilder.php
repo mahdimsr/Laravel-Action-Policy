@@ -41,9 +41,10 @@ class ActionPolicyBuilder
         return $this;
     }
 
-    public function modelMethod(string $methodName): self
+    public function modelMethod(string $methodName, ...$arguments): self
     {
         $this->actionPolicy->modelMethod = $methodName;
+        $this->actionPolicy->modelArguments = $arguments;
 
         return $this;
     }

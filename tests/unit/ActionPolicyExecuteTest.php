@@ -33,3 +33,15 @@ it('run model function', function () {
 
     $this->assertEquals(null, $response);
 });
+
+it('run model function with one Argument', function () {
+    $response = ActionPolicy::builder()->model(TestModel::class)->modelMethod('setName', 'Gwen')->build()->runModel();
+
+    $this->assertEquals('Gwen', $response);
+});
+
+it('run model function with some Arguments', function () {
+    $response = ActionPolicy::builder()->model(TestModel::class)->modelMethod('makeFriends', 'Gwen', 'Parker')->build()->runModel();
+
+    $this->assertEquals('Gwen Parker', $response);
+});
