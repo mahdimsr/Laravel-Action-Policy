@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ActionPolicy
 {
     public Model $model;
+    public string|object $policy;
 
     public function __construct()
     {
@@ -20,5 +21,10 @@ class ActionPolicy
     public function getModel(): Model
     {
         return $this->model;
+    }
+
+    public function getPolicy(): string|object
+    {
+        return $this->policy;
     }
 }

@@ -24,4 +24,11 @@ class ActionPolicyBuilder
 
         return $this;
     }
+
+    public function policy(string|object $policyClass): self
+    {
+        $this->actionPolicy->policy = $policyClass;
+
+        return $this;
+    }
 }
