@@ -7,9 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActionPolicy
 {
-    public Model $model;
+    public Model  $model;
     public object $policy;
     public string $policyMethod;
+    public array  $policyArguments;
     public string $modelMethod;
 
     public function __construct()
@@ -41,9 +42,14 @@ class ActionPolicy
         return $this->modelMethod;
     }
 
+    public function getPolicyArguments(): array
+    {
+        return $this->policyArguments;
+    }
+
     public function runPolicy(): Response
     {
-        return $this->getPolicy()->{$this->getPolicyMethod()}();
+        return call_user_func_array([$this->getPolicy(),$this->getPolicyMethod()], $this->getPolicyArguments());
     }
 
     public function runModel(): mixed

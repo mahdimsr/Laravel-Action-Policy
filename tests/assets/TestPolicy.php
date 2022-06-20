@@ -10,4 +10,14 @@ class TestPolicy
     {
         return Response::allow();
     }
+
+    public function canSetJohn($name): Response
+    {
+        return $name === 'John' ? Response::allow() : Response::deny();
+    }
+
+    public function canBeFriend($friendOne, $friendTwo, $friendThree): Response
+    {
+        return Response::allow();
+    }
 }

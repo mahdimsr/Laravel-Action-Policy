@@ -10,6 +10,24 @@ it('get Response policy function', function () {
     $this->assertInstanceOf(\Illuminate\Auth\Access\Response::class, $response);
 });
 
+it('get allowed Response policy function with one argument', function () {
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'John')->build()->runPolicy();
+
+    $this->assertTrue($response->allowed());
+});
+
+it('get denied Response policy function with one argument', function () {
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'Max')->build()->runPolicy();
+
+    $this->assertTrue($response->denied());
+});
+
+it('get denied Response policy function with some arguments', function () {
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canBeFriend', 'Max', 'Peter', 'Alex')->build()->runPolicy();
+
+    $this->assertTrue($response->allowed());
+});
+
 it('run model function', function () {
     $response = ActionPolicy::builder()->model(TestModel::class)->modelMethod('setName')->build()->runModel();
 
