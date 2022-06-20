@@ -6,6 +6,7 @@
         "laravel",
         "laravel-action-policy"
     ],
+    "version": "1.0.0",
     "homepage": "https://github.com/msr/laravel-action-policy",
     "license": "MIT",
     "authors": [
@@ -67,6 +68,6 @@
             }
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "alpha",
     "prefer-stable": true
 }
