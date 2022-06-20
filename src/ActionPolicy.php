@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ActionPolicy
 {
-    public Model|string $model;
-    public string|object $policy;
+    public Model $model;
+    public object $policy;
     public string $policyMethod;
     public string $modelMethod;
 
@@ -20,12 +20,12 @@ class ActionPolicy
         return (new ActionPolicyBuilder(new self()));
     }
 
-    public function getModel(): Model|string
+    public function getModel(): Model
     {
         return $this->model;
     }
 
-    public function getPolicy(): string|object
+    public function getPolicy(): object
     {
         return $this->policy;
     }

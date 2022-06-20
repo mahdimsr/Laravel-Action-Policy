@@ -3,6 +3,7 @@
 namespace Msr\ActionPolicy;
 
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\Object_;
 
 class ActionPolicyBuilder
 {
@@ -20,14 +21,14 @@ class ActionPolicyBuilder
 
     public function model(Model|string $model): self
     {
-        $this->actionPolicy->model = $model;
+        $this->actionPolicy->model = $model instanceof Model ? $model : new $model();
 
         return $this;
     }
 
     public function policy(string|object $policyClass): self
     {
-        $this->actionPolicy->policy = $policyClass;
+        $this->actionPolicy->policy = $policyClass instanceof Object_ ? $policyClass : new $policyClass();
 
         return $this;
     }
