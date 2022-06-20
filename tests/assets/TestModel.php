@@ -6,4 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class TestModel extends Model
 {
+    public function setName(?string $name = null): ?string
+    {
+        return $name;
+    }
 }

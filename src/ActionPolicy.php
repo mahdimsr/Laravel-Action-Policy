@@ -45,4 +45,9 @@ class ActionPolicy
     {
         return $this->getPolicy()->{$this->getPolicyMethod()}();
     }
+
+    public function runModel(): mixed
+    {
+        return $this->model->{$this->getModelMethod()}();
+    }
 }
