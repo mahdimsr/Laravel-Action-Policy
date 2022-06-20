@@ -18,7 +18,7 @@ class ActionPolicyBuilder
         return $this->actionPolicy;
     }
 
-    public function model(Model $model): self
+    public function model(Model|string $model): self
     {
         $this->actionPolicy->model = $model;
 

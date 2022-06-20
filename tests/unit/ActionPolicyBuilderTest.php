@@ -15,10 +15,16 @@ it('return ActionPolicy instance from build method of builder', function () {
     $this->assertInstanceOf(\Msr\ActionPolicy\ActionPolicy::class, $actionPolicyBuilderInstance->build());
 });
 
-it('set model of ActionPolicy model attribute', function () {
+it('set model instance of ActionPolicy model attribute', function () {
     $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->model(new TestModel());
 
     $this->assertInstanceOf(TestModel::class, $actionPolicyBuilderInstance->build()->getModel());
+});
+
+it('set model string class of ActionPolicy model attribute', function () {
+    $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->model(TestModel::class);
+
+    $this->assertEquals(TestModel::class, $actionPolicyBuilderInstance->build()->getModel());
 });
 
 it('set policy instance of ActionPolicy policy attribute', function () {
