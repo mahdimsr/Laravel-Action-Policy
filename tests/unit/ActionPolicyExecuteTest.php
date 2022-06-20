@@ -25,3 +25,15 @@ it('denied to run model method', function () {
 
     $this->assertTrue($response->denied());
 });
+
+it('get allowed response from run method with out model', function () {
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'John')->build()->run();
+
+    $this->assertTrue($response->allowed());
+});
+
+it('get denied response from run method with out model', function () {
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'Ross')->build()->run();
+
+    $this->assertTrue($response->denied());
+});

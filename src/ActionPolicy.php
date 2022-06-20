@@ -11,7 +11,7 @@ class ActionPolicy
     public object $policy;
     public string $policyMethod;
     public array  $policyArguments;
-    public string $modelMethod;
+    public ?string $modelMethod = null;
     public array  $modelArguments;
 
     public function __construct()
@@ -38,7 +38,7 @@ class ActionPolicy
         return $this->policyMethod;
     }
 
-    public function getModelMethod(): string
+    public function getModelMethod(): ?string
     {
         return $this->modelMethod;
     }
@@ -65,7 +65,7 @@ class ActionPolicy
 
     public function run(): Response
     {
-        if ($this->runPolicy()->allowed()) {
+        if ($this->runPolicy()->allowed() and $this->getModelMethod() !== null) {
             $this->runModel();
         }
 
