@@ -2,6 +2,8 @@
 
 namespace Msr\ActionPolicy;
 
+use Illuminate\Database\Eloquent\Model;
+
 class ActionPolicyBuilder
 {
     private ActionPolicy $actionPolicy;
@@ -14,5 +16,12 @@ class ActionPolicyBuilder
     public function build(): ActionPolicy
     {
         return $this->actionPolicy;
+    }
+
+    public function model(Model $model): self
+    {
+        $this->actionPolicy->model = $model;
+
+        return $this;
     }
 }
