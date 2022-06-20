@@ -31,4 +31,18 @@ class ActionPolicyBuilder
 
         return $this;
     }
+
+    public function policyMethod(string $methodName): self
+    {
+        $this->actionPolicy->policyMethod = $methodName;
+
+        return $this;
+    }
+
+    public function modelMethod(string $methodName): self
+    {
+        $this->actionPolicy->modelMethod = $methodName;
+
+        return $this;
+    }
 }

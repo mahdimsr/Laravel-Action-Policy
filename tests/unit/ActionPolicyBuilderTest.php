@@ -38,3 +38,15 @@ it('set policy string class of ActionPolicy policy attribute', function () {
 
     $this->assertEquals(TestPolicy::class, $actionPolicyBuilderInstance->build()->getpolicy());
 });
+
+it('set policy method of ActionPolicy policyMethod attribute', function () {
+    $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->policyMethod('canSetName');
+
+    $this->assertEquals('canSetName', $actionPolicyBuilderInstance->build()->getpolicyMethod());
+});
+
+it('set model method of ActionPolicy model modelMethod attribute', function () {
+    $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->modelMethod('setName');
+
+    $this->assertEquals('setName', $actionPolicyBuilderInstance->build()->getmodelMethod());
+});
