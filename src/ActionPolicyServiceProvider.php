@@ -15,11 +15,6 @@ class ActionPolicyServiceProvider extends PackageServiceProvider
          *
          * More info: https://github.com/spatie/laravel-package-tools
          */
-        $package
-            ->name('laravel-action-policy')
-            ->hasConfigFile()
-            ->hasViews()
-            ->hasMigration('create_laravel-action-policy_table')
-            ->hasCommand(ActionPolicyCommand::class);
+        $package->name('laravel-action-policy');
     }
 }
