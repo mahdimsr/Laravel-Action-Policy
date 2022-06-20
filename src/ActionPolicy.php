@@ -2,6 +2,7 @@
 
 namespace Msr\ActionPolicy;
 
+use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 
 class ActionPolicy
@@ -38,5 +39,10 @@ class ActionPolicy
     public function getModelMethod(): string
     {
         return $this->modelMethod;
+    }
+
+    public function runPolicy(): Response
+    {
+        return $this->getPolicy()->{$this->getPolicyMethod()}();
     }
 }
