@@ -1,22 +1,11 @@
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/support-ukraine.svg?t=1" />](https://supportukrainenow.org)
-
 # a laravel package that handle authorization actions by user
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/msr/laravel-action-policy.svg?style=flat-square)](https://packagist.org/packages/msr/laravel-action-policy)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/msr/laravel-action-policy/run-tests?label=tests)](https://github.com/msr/laravel-action-policy/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/msr/laravel-action-policy/Check%20&%20fix%20styling?label=code%20style)](https://github.com/msr/laravel-action-policy/actions?query=workflow%3A"Check+%26+fix+styling"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/msr/laravel-action-policy.svg?style=flat-square)](https://packagist.org/packages/msr/laravel-action-policy)
+[![run-tests](https://github.com/mahdimsr/Laravel-Action-Policy/actions/workflows/run-tests.yml/badge.svg?branch=main)](https://github.com/mahdimsr/Laravel-Action-Policy/actions/workflows/run-tests.yml)
+[![Check & fix styling](https://github.com/mahdimsr/Laravel-Action-Policy/actions/workflows/php-cs-fixer.yml/badge.svg)](https://github.com/mahdimsr/Laravel-Action-Policy/actions/workflows/php-cs-fixer.yml)
 
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
-
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/Laravel-Action-Policy.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/Laravel-Action-Policy)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+the mindset of this package is the application scenarios separate to some layers, and each layer has its own work todo. so the authorization of an action can be checked in a policy class and as usual
+each model has its policy... so for each function/scenario you want to check the authority of the auth user you can use this package
 
 ## Installation
 
@@ -26,37 +15,25 @@ You can install the package via composer:
 composer require msr/laravel-action-policy
 ```
 
-You can publish and run the migrations with:
-
-```bash
-php artisan vendor:publish --tag="laravel-action-policy-migrations"
-php artisan migrate
-```
-
-You can publish the config file with:
-
-```bash
-php artisan vendor:publish --tag="laravel-action-policy-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-];
-```
-
-Optionally, you can publish the views using
-
-```bash
-php artisan vendor:publish --tag="laravel-action-policy-views"
-```
-
 ## Usage
 
 ```php
-$actionPolicy = new Msr\ActionPolicy();
-echo $actionPolicy->echoPhrase('Hello, Msr!');
+$response = \Msr\ActionPolicy\ActionPolicy::builder()
+                                ->policy('your policy class or instance')
+                                ->policyMethod('method of your policy check authority','parameters you need in method')
+                                ->model('your model class or instance')
+                                ->modelMethod('method you want to call in you model','parameters you need in method')
+                                ->build()->run();
+                                
+if ($response->allowed())
+{
+    // do your work
+}
+elseif ($response->denied())
+{
+    // show up some error
+    log($response->message())
+}
 ```
 
 ## Testing
@@ -69,17 +46,13 @@ composer test
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
 
-## Contributing
-
-Please see [CONTRIBUTING](https://github.com/spatie/.github/blob/main/CONTRIBUTING.md) for details.
-
 ## Security Vulnerabilities
 
 Please review [our security policy](../../security/policy) on how to report security vulnerabilities.
 
 ## Credits
 
-- [Mahdi](https://github.com/mahdimsr)
+- [Mahdi Msr](https://github.com/mahdimsr)
 - [All Contributors](../../contributors)
 
 ## License
