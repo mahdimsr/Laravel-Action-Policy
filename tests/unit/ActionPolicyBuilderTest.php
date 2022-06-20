@@ -21,8 +21,14 @@ it('set model of ActionPolicy model attribute', function () {
     $this->assertInstanceOf(TestModel::class, $actionPolicyBuilderInstance->build()->getModel());
 });
 
-it('set policy of ActionPolicy policy attribute', function () {
+it('set policy instance of ActionPolicy policy attribute', function () {
     $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->policy(new TestPolicy());
 
     $this->assertInstanceOf(TestPolicy::class, $actionPolicyBuilderInstance->build()->getpolicy());
+});
+
+it('set policy string class of ActionPolicy policy attribute', function () {
+    $actionPolicyBuilderInstance = \Msr\ActionPolicy\ActionPolicy::builder()->policy(TestPolicy::class);
+
+    $this->assertEquals(TestPolicy::class, $actionPolicyBuilderInstance->build()->getpolicy());
 });
