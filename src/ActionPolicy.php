@@ -62,4 +62,13 @@ class ActionPolicy
     {
         return call_user_func_array([$this->getModel(),$this->getModelMethod()], $this->getModelArgument());
     }
+
+    public function run(): Response
+    {
+        if ($this->runPolicy()->allowed()) {
+            $this->runModel();
+        }
+
+        return $this->runPolicy();
+    }
 }
