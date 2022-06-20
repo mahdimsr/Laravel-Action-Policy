@@ -2,7 +2,6 @@
 
 namespace Msr\ActionPolicy;
 
-use Msr\ActionPolicy\Commands\ActionPolicyCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
 
