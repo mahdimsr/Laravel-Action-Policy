@@ -28,15 +28,14 @@ class ActionPolicyBuilder
 
     public function policy(string|object $policyClass): self
     {
-        $this->actionPolicy->policy = $policyClass instanceof Object_ ? $policyClass : new $policyClass();
+        $this->actionPolicy->setPolicy($policyClass);
 
         return $this;
     }
 
     public function policyMethod(string $methodName, ...$arguments): self
     {
-        $this->actionPolicy->policyMethod = $methodName;
-        $this->actionPolicy->policyArguments = $arguments;
+        $this->actionPolicy->setPolicyMethod($methodName, ...$arguments);
 
         return $this;
     }

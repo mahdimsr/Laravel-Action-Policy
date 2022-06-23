@@ -3,14 +3,10 @@
 namespace Msr\ActionPolicy;
 
 use Illuminate\Auth\Access\Response;
-use Illuminate\Database\Eloquent\Model;
 use Msr\ActionPolicy\Decorator\BaseActionPolicy;
 
 class ActionPolicy extends BaseActionPolicy
 {
-    public object $policy;
-    public string $policyMethod;
-    public array  $policyArguments;
 
     public function __construct()
     {
@@ -19,21 +15,6 @@ class ActionPolicy extends BaseActionPolicy
     public static function builder(): ActionPolicyBuilder
     {
         return (new ActionPolicyBuilder(new self()));
-    }
-
-    public function getPolicy(): object
-    {
-        return $this->policy;
-    }
-
-    public function getPolicyMethod(): string
-    {
-        return $this->policyMethod;
-    }
-
-    public function getPolicyArguments(): array
-    {
-        return $this->policyArguments;
     }
 
     public function runPolicy(): Response
