@@ -21,7 +21,7 @@ class ActionPolicyBuilder
 
     public function model(Model|string $model): self
     {
-        $this->actionPolicy->model = $model instanceof Model ? $model : new $model();
+        $this->actionPolicy->setModel($model);
 
         return $this;
     }
@@ -43,8 +43,7 @@ class ActionPolicyBuilder
 
     public function modelMethod(string $methodName, ...$arguments): self
     {
-        $this->actionPolicy->modelMethod = $methodName;
-        $this->actionPolicy->modelArguments = $arguments;
+        $this->actionPolicy->setModelMethod($methodName, ...$arguments);
 
         return $this;
     }
