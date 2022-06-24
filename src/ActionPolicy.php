@@ -4,11 +4,9 @@ namespace Msr\ActionPolicy;
 
 use Illuminate\Auth\Access\Response;
 use Msr\ActionPolicy\Decorator\BaseActionPolicy;
-use Msr\ActionPolicy\Decorator\BaseActionPolicyBuilder;
 
 class ActionPolicy extends BaseActionPolicy
 {
-
     public function __construct()
     {
     }
