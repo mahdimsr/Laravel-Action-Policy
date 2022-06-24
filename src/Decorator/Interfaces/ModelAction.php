@@ -36,4 +36,6 @@ interface ModelAction
     public function getModelMethod(): ?string;
 
     public function getModelArguments(): array;
+
+    public function runModel(): mixed;
 }
