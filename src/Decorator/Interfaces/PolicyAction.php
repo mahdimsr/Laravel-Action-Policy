@@ -15,6 +15,4 @@ interface PolicyAction
     public function getPolicyMethod(): string;
 
     public function getPolicyArguments(): array;
-
-    public function runPolicy(): Response;
 }

@@ -6,9 +6,10 @@ use Illuminate\Auth\Access\Response;
 use Illuminate\Database\Eloquent\Model;
 use Msr\ActionPolicy\Decorator\Interfaces\ModelAction;
 use Msr\ActionPolicy\Decorator\Interfaces\PolicyAction;
+use Msr\ActionPolicy\Decorator\Interfaces\RunAction;
 use phpDocumentor\Reflection\Types\Object_;
 
-abstract class BaseActionPolicy implements ModelAction, PolicyAction
+abstract class BaseActionPolicy implements ModelAction, PolicyAction, RunAction
 {
     private Model  $model;
     private ?string $modelMethod = null;
@@ -17,8 +18,6 @@ abstract class BaseActionPolicy implements ModelAction, PolicyAction
     private object $policy;
     private ?string $policyMethod;
     private array $policyArguments;
-
-    abstract public function run(): Response;
 
     public function setModel(Model|string $model): void
     {
@@ -44,11 +43,6 @@ abstract class BaseActionPolicy implements ModelAction, PolicyAction
     public function getModelArguments(): array
     {
         return $this->modelArguments;
-    }
-
-    public function runModel(): mixed
-    {
-        return call_user_func_array([$this->getModel(),$this->getModelMethod()], $this->getModelArguments());
     }
 
     public function setPolicy(object|string $policyClass): void
@@ -80,5 +74,10 @@ abstract class BaseActionPolicy implements ModelAction, PolicyAction
     public function runPolicy(): Response
     {
         return call_user_func_array([$this->getPolicy(),$this->getPolicyMethod()], $this->getPolicyArguments());
+    }
+
+    public function runModel(): mixed
+    {
+        return call_user_func_array([$this->getModel(),$this->getModelMethod()], $this->getModelArguments());
     }
 }
