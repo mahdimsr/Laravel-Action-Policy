@@ -2,8 +2,6 @@
 
 namespace Msr\ActionPolicy\Decorator\Interfaces;
 
-use Illuminate\Auth\Access\Response;
-
 interface PolicyAction
 {
     public function setPolicy(object|string $policyClass): void;
