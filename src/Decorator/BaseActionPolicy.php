@@ -71,7 +71,7 @@ abstract class BaseActionPolicy implements ModelAction, PolicyAction, RunAction
         return $this->policyArguments;
     }
 
-    public function runPolicy(): Response
+    public function authorizePolicy(): Response
     {
         return call_user_func_array([$this->getPolicy(),$this->getPolicyMethod()], $this->getPolicyArguments());
     }
