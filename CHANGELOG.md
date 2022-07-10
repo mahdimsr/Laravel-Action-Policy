@@ -11,6 +11,10 @@ All notable changes to `Laravel-Action-Policy` will be documented in this file.
 
 - make base classes for customization override functions
 
+## release-1.1.0 - 2022-07-10
+
+change some method name
+
 ## release-1.0.0 - 2022-06-24
 
 - make base classes for customization override functions
