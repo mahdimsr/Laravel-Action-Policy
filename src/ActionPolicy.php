@@ -20,10 +20,10 @@ class ActionPolicy extends BaseActionPolicy
 
     public function run(): Response
     {
-        if ($this->runPolicy()->allowed() and $this->getModelMethod() !== null) {
+        if ($this->authorizePolicy()->allowed() and $this->getModelMethod() !== null) {
             $this->runModel();
         }
 
-        return $this->runPolicy();
+        return $this->authorizePolicy();
     }
 }

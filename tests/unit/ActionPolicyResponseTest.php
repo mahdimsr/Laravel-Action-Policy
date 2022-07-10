@@ -5,25 +5,25 @@ use Msr\ActionPolicy\Tests\assets\TestModel;
 use Msr\ActionPolicy\Tests\assets\TestPolicy;
 
 it('get Response policy function', function () {
-    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetName')->build()->runPolicy();
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetName')->build()->authorizePolicy();
 
     $this->assertInstanceOf(\Illuminate\Auth\Access\Response::class, $response);
 });
 
 it('get allowed Response policy function with one argument', function () {
-    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'John')->build()->runPolicy();
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'John')->build()->authorizePolicy();
 
     $this->assertTrue($response->allowed());
 });
 
 it('get denied Response policy function with one argument', function () {
-    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'Max')->build()->runPolicy();
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canSetJohn', 'Max')->build()->authorizePolicy();
 
     $this->assertTrue($response->denied());
 });
 
 it('get denied Response policy function with some arguments', function () {
-    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canBeFriend', 'Max', 'Peter', 'Alex')->build()->runPolicy();
+    $response = ActionPolicy::builder()->policy(TestPolicy::class)->policyMethod('canBeFriend', 'Max', 'Peter', 'Alex')->build()->authorizePolicy();
 
     $this->assertTrue($response->allowed());
 });

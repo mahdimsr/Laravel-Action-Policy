@@ -8,7 +8,7 @@ interface RunAction
 {
     public function runModel(): mixed;
 
-    public function runPolicy(): Response;
+    public function authorizePolicy(): Response;
 
     public function run(): Response;
 }
